@@ -1,0 +1,142 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250828101034
+Username: SIMRAN\hp
+RunAs User: SIMRAN\hp
+Configuration Name: 
+Machine: SIMRAN (Microsoft Windows NT 10.0.22631.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command try { . "c:\Users\hp\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1" } catch {}
+Process ID: 19080
+PSVersion: 5.1.22621.5624
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.22621.5624
+BuildVersion: 10.0.22621.5624
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\hp\Downloads\HAR VSC\session_log.txt
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+(.venv) clear
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+(.venv) python scripts\CombineScript.py
+Done Combining the training data
+C:\Users\hp\Downloads\HAR VSC\scripts\CombineScript.py:90: FutureWarning: The 'delim_whitespace' keyword in pd.read_csv is dep
+recated and will be removed in a future version. Use ``sep='\s+'`` instead
+  total_acc_x = pd.read_csv(os.path.join(test_path,"Inertial Signals","total_acc_x_test.txt"),delim_whitespace=True,header=Non
+e)
+C:\Users\hp\Downloads\HAR VSC\scripts\CombineScript.py:91: FutureWarning: The 'delim_whitespace' keyword in pd.read_csv is dep
+recated and will be removed in a future version. Use ``sep='\s+'`` instead
+  total_acc_y = pd.read_csv(os.path.join(test_path,"Inertial Signals","total_acc_y_test.txt"),delim_whitespace=True,header=Non
+e)
+C:\Users\hp\Downloads\HAR VSC\scripts\CombineScript.py:92: FutureWarning: The 'delim_whitespace' keyword in pd.read_csv is dep
+recated and will be removed in a future version. Use ``sep='\s+'`` instead
+  total_acc_z = pd.read_csv(os.path.join(test_path,"Inertial Signals","total_acc_z_test.txt"),delim_whitespace=True,header=Non
+e)
+C:\Users\hp\Downloads\HAR VSC\scripts\CombineScript.py:95: FutureWarning: The 'delim_whitespace' keyword in pd.read_csv is dep
+recated and will be removed in a future version. Use ``sep='\s+'`` instead
+  subject_test = pd.read_csv(os.path.join(test_path,"subject_test.txt"),delim_whitespace=True,header=None)
+C:\Users\hp\Downloads\HAR VSC\scripts\CombineScript.py:98: FutureWarning: The 'delim_whitespace' keyword in pd.read_csv is dep
+recated and will be removed in a future version. Use ``sep='\s+'`` instead
+  y = pd.read_csv(os.path.join(test_path,"y_test.txt"),delim_whitespace=True,header=None)
+Done Combining the testing data
+Done Combining the data
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+(.venv) scripts\MakeDataset.py
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+(.venv) python scripts\MakeDataset.py
+Training data shape:  (126, 500, 3)
+Testing data shape:  (54, 500, 3)
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+(.venv) pwd
+
+Path
+----
+C:\Users\hp\Downloads\HAR VSC
+
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+(.venv) ls "C:\Users\hp\Downloads\HAR VSC\UCI HAR Dataset"
+
+
+
+    Directory: C:\Users\hp\Downloads\HAR VSC\UCI HAR Dataset
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        27/08/2025     19:27                test
+d-----        27/08/2025     19:27                train
+-a----        27/08/2025     19:27           6148 .DS_Store
+-a----        27/08/2025     19:27             80 activity_labels.txt
+-a----        27/08/2025     19:27          15785 features.txt
+-a----        27/08/2025     19:27           2809 features_info.txt
+-a----        27/08/2025     19:27           6304 README.txt
+
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+(.venv) ls "C:\Users\hp\Downloads\HAR VSC\UCI HAR Dataset\train\Inertial Signals" | findstr total_acc
+ls "C:\Users\hp\Downloads\HAR VSC\UCI HAR Dataset\test\Inertial Signals"  | findstr total_acc
+
+
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+(.venv) ls "C:\Users\hp\Downloads\HAR VSC\outputs"
+
+
+
+    Directory: C:\Users\hp\Downloads\HAR VSC\outputs
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        28/08/2025     10:07                figures
+d-----        28/08/2025     10:08                models
+
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+(.venv) pip show tsfel
+
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+(.venv) pip show tsfel
+
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+(.venv) python -c "import pandas, numpy, matplotlib, seaborn, sklearn, tsfel; print('All good')"
+
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+(.venv) python scripts\har_eda_1.py
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+(.venv) python scripts\har_des_tree_2.py
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+(.venv) Start-Transcript -Path "C:\Users\hp\Downloads\HAR VSC\session_log.txt" -Append
+
+Transcript started, output file is C:\Users\hp\Downloads\HAR VSC\session_log.txt
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+(.venv) pip install google-search-results
+Collecting google-search-results
+  Downloading google_search_results-2.4.2.tar.gz (18 kB)
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... done
+  Preparing metadata (pyproject.toml) ... done
+Requirement already satisfied: requests in c:\users\hp\downloads\har vsc\.venv\lib\site-packages (from google-search-results) (2.32.5)
+Requirement already satisfied: charset_normalizer<4,>=2 in c:\users\hp\downloads\har vsc\.venv\lib\site-packages (from requests->google-search-results) (3.4.3)
+Requirement already satisfied: idna<4,>=2.5 in c:\users\hp\downloads\har vsc\.venv\lib\site-packages (from requests->google-search-results) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in c:\users\hp\downloads\har vsc\.venv\lib\site-packages (from requests->google-search-results) (2.5.0)
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\hp\downloads\har vsc\.venv\lib\site-packages (from requests->google-search-results) (2025.8.3)
+Building wheels for collected packages: google-search-results
+  Building wheel for google-search-results (pyproject.toml) ... done
+  Created wheel for google-search-results: filename=google_search_results-2.4.2-py3-none-any.whl size=32173 sha256=4f04c716c8971d97a7c94a7fcc5250a2f284f59d894c1e2f943f3d17f945ce1c
+  Stored in directory: c:\users\hp\appdata\local\pip\cache\wheels\44\af\e2\dde9fab6f1876485b72b35e9cd48da741da67d20e617c3b971
+Successfully built google-search-results
+Installing collected packages: google-search-results
+Successfully installed google-search-results-2.4.2
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5chp\x5cDownloads\x5cHAR VSCPS C:\Users\hp\Downloads\HAR VSC> ]633;B
