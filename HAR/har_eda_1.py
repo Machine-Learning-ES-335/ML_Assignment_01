@@ -1,4 +1,4 @@
-# har_eda.py
+# har_eda.py task 1 eda
 import os
 import numpy as np
 import pandas as pd
@@ -7,12 +7,12 @@ import seaborn as sns
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
-DATASET_PATH = r"C:\Users\hp\Downloads\HAR VSC\UCI HAR Dataset"  #  change as needed
+DATASET_PATH = r"C:\Users\hp\Downloads\HAR VSC\UCI HAR Dataset"
 TRAIN_PATH = os.path.join(DATASET_PATH, "train")
 INERTIAL_FOLDER = os.path.join(TRAIN_PATH, "Inertial Signals")
 OUT_DIR = os.path.join(os.path.dirname(DATASET_PATH), "outputs", "figures")
 os.makedirs(OUT_DIR, exist_ok=True)
-SAMPLE_RATE = 50  # Hz (change if different value)
+SAMPLE_RATE = 50  # Hz
 
 
 # load data
@@ -38,7 +38,7 @@ acc_z_np = acc_z.values.astype(float)
 total_acc = np.sqrt(acc_x_np**2 + acc_y_np**2 + acc_z_np**2)  # shape (n_samples, n_timesteps)
 
 
-# 1) Plot one sample waveform per activity (6 panels)
+# 1. Plot one sample waveform per activity (6 panels)
 
 unique_acts = sorted(y_train['activity'].unique())
 fig, axes = plt.subplots(2, 3, figsize=(15, 6))
@@ -54,7 +54,7 @@ plt.savefig(os.path.join(OUT_DIR, "waveforms_one_per_activity.png"), dpi=150)
 plt.show()
 
 
-# 2) Static vs Dynamic: compare summary stats of L2 per activity
+# 2. Static vs Dynamic: compare summary stats of L2 per activity
 
 df_stats = pd.DataFrame({
     "activity": y_train['activity'].values,
@@ -76,7 +76,7 @@ plt.show()
 print(df_stats.groupby("activity_name")[["mean_l2", "std_l2"]].agg(['mean', 'std']).round(4))
 
 
-# 3) PCA on total_acc timeseries -> 2 components
+# 3.A PCA on total_acc timeseries -> 2 components
 # Each sample (row) is the timeseries vector -> PCA reduces to 2 numbers per sample
 
 scaler = StandardScaler()
@@ -99,7 +99,7 @@ plt.tight_layout()
 plt.savefig(os.path.join(OUT_DIR, "pca_total_acc_timeseries.png"), dpi=150)
 plt.show()
 
-# 4) TSFEL features (can be slow). Example extraction.
+# 3.B TSFEL features (can be slow). Example extraction.
 try:
     import tsfel
     print("Extracting TSFEL features (this may take time).")
@@ -134,7 +134,7 @@ except Exception as e:
     print("TSFEL not run or failed. Install tsfel and retry (pip install tsfel). Error:", e)
 
 
-# 5) Dataset-provided features -> load X_train.txt and features.txt (these are the 561 features in original UCI)
+# 3.C Dataset-provided features -> load X_train.txt and features.txt (these are the 561 features in original UCI)
 try:
     X_train = pd.read_csv(os.path.join(TRAIN_PATH, "X_train.txt"), sep=r'\s+', header=None)
     feat_names = pd.read_csv(os.path.join(DATASET_PATH, "features.txt"), sep=r'\s+', header=None, index_col=0)[1].tolist()
@@ -159,7 +159,7 @@ except Exception as e:
     print("Could not load X_train.txt/features.txt. Error:", e)
 
 
-# 6) Correlation matrix for TSFEL features and dataset features (if available)
+# 4. Correlation matrix for TSFEL features and dataset features (if available)
 
 def find_high_corr_pairs(df, thresh=0.95, top_n=20):
     corr = df.corr().abs()
