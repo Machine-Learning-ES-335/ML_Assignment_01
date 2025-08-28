@@ -69,7 +69,6 @@ print("\n***********************************************\n")
 
 # ------------------ Q2 b) Nested Cross-Validation ------------------
 
-
 best_depth = None
 best_score = 0
 best_criteria = None
