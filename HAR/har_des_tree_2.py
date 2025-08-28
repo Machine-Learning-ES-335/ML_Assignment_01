@@ -62,24 +62,50 @@ X_test_scaled = scaler_provided.transform(X_test)
 print(f"Provided features shape: Train {X_train_scaled.shape}, Test {X_test_scaled.shape}")
 
 
-# TSFEL FEATURES
+#TSFEL FEATURES
 print("\nLoading TSFEL features...")
 tsfel_train_path = os.path.join(OUTPUTS_FEATURES, "train_tsfel.csv")
 tsfel_test_path = os.path.join(OUTPUTS_FEATURES, "test_tsfel.csv")
 
+def extract_tsfel_features(X, fs=50):
+    #Extract TSFEL features for each row of a (n_samples, n_timesteps) array.
+    import tsfel
+    cfg = tsfel.get_features_by_domain()
+    feats_list = []
+    for row in X:
+        ts = pd.Series(row)
+        feats = tsfel.time_series_features_extractor(cfg, ts, fs=fs)
+        feats_list.append(feats.iloc[0])
+    df = pd.DataFrame(feats_list).reset_index(drop=True)
+    return df.fillna(0)
+
 if os.path.exists(tsfel_train_path) and os.path.exists(tsfel_test_path):
+    # Load precomputed features
     train_tsfel = pd.read_csv(tsfel_train_path)
     test_tsfel = pd.read_csv(tsfel_test_path)
-
-    scaler_tsfel = StandardScaler()
-    train_tsfel_scaled = scaler_tsfel.fit_transform(train_tsfel)
-    test_tsfel_scaled = scaler_tsfel.transform(test_tsfel)
-
-    print(f"TSFEL features shape: Train {train_tsfel_scaled.shape}, Test {test_tsfel_scaled.shape}")
-    tsfel_available = True
+    print("Loaded pre-saved TSFEL features.")
 else:
-    print("TSFEL feature files not found. Skipping TSFEL comparison.")
-    tsfel_available = False
+    print("TSFEL feature files not found. Computing features now (this may take time)...")
+    import tsfel  # ensure imported here if fallback triggers
+
+    # Extract from raw train/test signals
+    train_tsfel = extract_tsfel_features(train_raw, fs=50)
+    test_tsfel = extract_tsfel_features(test_raw, fs=50)
+
+    # Save for next time
+    os.makedirs(OUTPUTS_FEATURES, exist_ok=True)
+    train_tsfel.to_csv(tsfel_train_path, index=False)
+    test_tsfel.to_csv(tsfel_test_path, index=False)
+    print(f"Saved new TSFEL features to: {OUTPUTS_FEATURES}")
+
+# Scale features
+scaler_tsfel = StandardScaler()
+train_tsfel_scaled = scaler_tsfel.fit_transform(train_tsfel)
+test_tsfel_scaled = scaler_tsfel.transform(test_tsfel)
+
+print(f"TSFEL features shape: Train {train_tsfel_scaled.shape}, Test {test_tsfel_scaled.shape}")
+tsfel_available = True
+
 
 
 # Function to evaluate and plot confusion matrix
