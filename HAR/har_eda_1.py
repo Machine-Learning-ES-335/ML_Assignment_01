@@ -130,6 +130,19 @@ try:
     plt.tight_layout()
     plt.savefig(os.path.join(OUT_DIR, "pca_tsfel.png"), dpi=150)
     plt.show()
+    # Save TSFEL features for use in Decision Tree script
+    OUTPUTS_FEATURES = os.path.join(os.path.dirname(DATASET_PATH), "outputs", "features")
+    os.makedirs(OUTPUTS_FEATURES, exist_ok=True)
+
+    train_tsfel_path = os.path.join(OUTPUTS_FEATURES, "train_tsfel.csv")
+    tsfel_df.to_csv(train_tsfel_path, index=False)
+    print("Saved TSFEL train features to:", train_tsfel_path)
+    TEST_PATH = os.path.join(DATASET_PATH, "test")
+     INERTIAL_TEST = os.path.join(TEST_PATH, "Inertial Signals")
+# same as before but using total_acc_test (from test_x, test_y, test_z)
+# then save to test_tsfel.csv
+
+
 except Exception as e:
     print("TSFEL not run or failed. Install tsfel and retry (pip install tsfel). Error:", e)
 
