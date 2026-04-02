@@ -8,7 +8,7 @@ Answer 1. The six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SIT
 - Static activities (SITTING, STANDING, LAYING) are mostly flat with very low variance.
 
 These patterns suggest that a machine learning model can easily learn these differences because dynamic vs. static activities have distinct signatures.
-
+<img width="594" height="252" alt="ML Intertial signals shape" src="https://github.com/user-attachments/assets/b339232a-34df-4501-a82d-6692e591ed7a" />
 
 Answer 2.
 The magnitude of linear acceleration: $\sqrt{acc_x^2 + acc_y^2 + acc_z^2}$ shows clear separation between static and dynamic activities.
@@ -48,7 +48,7 @@ Total Acceleration ==>	Rough static-vs-dynamic split; poor fine-grained separati
 TSFEL Features	==> Better spread, captures temporal-frequency info; clusters are more distinct.
 
 Provided Features	==> Best separation; features already optimized for HAR tasks.
-
+<img width="827" height="1000" alt="Screenshot 2025-08-27 200333" src="https://github.com/user-attachments/assets/fe015dc3-48da-4675-9f27-534096438ec0" />
 Q4. Calculate correlation of TSFEL features and dataset features. Identify redundancy.
 
 Answer: Correlation matrices reveal:
@@ -62,9 +62,13 @@ Answer: Correlation matrices reveal:
 
 
 
+
+<img width="913" height="912" alt="ML TSFEL features shape" src="https://github.com/user-attachments/assets/659e43fb-6daf-4a77-9da8-e30bdf4241da" />
+
 # Task 2 Desicion Trees for HAR
 1. a. Observations: High accuracy for dynamic activities (walking, walking upstairs/downstairs)
 Static postures (sitting vs standing) confused sometimes because raw data alone doesn’t clearly differentiate them.
+<img width="760" height="256" alt="ML Raw vs Provided vs TSFEL" src="https://github.com/user-attachments/assets/b7001855-91a4-4065-99a0-ddf7ebd38513" />
 
 b.
 
@@ -75,3 +79,4 @@ d.
 2.
 
 3.
+
